@@ -1,3 +1,14 @@
+.root {
+	display: flex;
+	align-items: center;
+	height: 100vh;
+}
+
+.calendar-wrapper {
+	width: 100%;
+	overflow: auto;
+}
+
 .calendar {
 	display: flex;
 	flex-direction: row;
@@ -5,8 +16,10 @@
 }
 
 .month {
+	position: relative;
 	display: flex;
 	flex-direction: column;
+	padding-right: 30px;
 }
 
 .title {
@@ -17,6 +30,7 @@
 	text-transform: uppercase;
 	position: sticky;
 	left: 0px;
+	width: fit-content;
 }
 
 .days {
