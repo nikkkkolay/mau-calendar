@@ -1,18 +1,25 @@
-.root {
+* {
+	font-family: Arial;
+}
+
+.flat-calendar-root {
 	display: flex;
 	align-items: center;
-	margin: auto;
-	height: 100vh;
+	height: fit-content;
 	max-width: 1300px;
 	padding: 0 20px;
+	user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	height: 500px;
+	margin: auto;
 }
 
-.calendar-wrapper {
-	width: 100%;
-	overflow: auto;
+.block::-webkit-scrollbar {
+	display: none;
 }
 
-.calendar {
+.flat-calendar {
 	display: flex;
 	flex-direction: row;
 	width: 100%;
@@ -23,6 +30,11 @@
 	display: flex;
 	flex-direction: column;
 	padding-right: 30px;
+	z-index: 100;
+}
+
+.month:last-child {
+	padding-right: 0;
 }
 
 .title {
@@ -47,6 +59,52 @@
 	align-items: center;
 	gap: 2px;
 	padding: 7px 9px;
+	margin-right: 6px;
+	color: inherit;
+	text-decoration: none;
+}
+
+.day:hover {
+	color: inherit;
+	text-decoration: none;
+}
+
+.day:hover .flat-calendar-tooltip {
+	visibility: visible;
+}
+
+.day.active {
+	position: relative;
+	cursor: pointer;
+}
+
+.day.active:hover .dayNumber,
+.day.active:hover .dayOfWeek {
+	color: #f9423a;
+}
+
+.day.active:focus,
+.day.active:focus .dayOfWeek {
+	color: #f9423a;
+	text-decoration: none;
+}
+
+.day.active span {
+	position: absolute;
+	top: -0.3rem;
+	right: -0.1rem;
+	width: 1.3rem;
+	height: 1.3rem;
+	font-size: 10px;
+	color: #ffffff;
+	border-radius: 50%;
+	border-top-left-radius: 50%;
+	border-top-right-radius: 50%;
+	border-bottom-right-radius: 50%;
+	border-bottom-left-radius: 50%;
+	line-height: 1.3;
+	background: #f9423a;
+	text-align: center;
 }
 
 .dayNumber {
@@ -64,4 +122,139 @@
 
 .dayOff {
 	color: rgb(247, 47, 47);
+}
+
+.control {
+	position: relative;
+	height: 74px;
+	width: 0;
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+	opacity: 0;
+	transition: width 0.3s ease, opacity 0.3s ease;
+}
+
+.control span {
+	font-size: 26px;
+	color: #999999;
+}
+
+.control:hover span {
+	opacity: .5;
+}
+
+.control-left {
+	margin-right: 12px;
+}
+
+.control-right {
+	opacity: 1;
+	width: 26px;
+}
+
+.control-left span::after,
+.control-right span::after {
+	position: absolute;
+	top: -26px;
+	content: "";
+	display: block;
+	width: 40px;
+	height: 60px;
+	margin-top: 14px;
+	pointer-events: none;
+	z-index: 200;
+}
+
+.control-left span::after {
+	right: -50px;
+	background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+}
+
+.control-right {
+	margin-left: 12px;
+}
+
+.control-right span::after {
+	left: -50px;
+	background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+}
+
+.flat-calendar-wrapper {
+	position: relative;
+	overflow-x: scroll;
+	overflow-y: visible;
+	z-index: 1;
+	scrollbar-width: none;
+}
+
+.flat-calendar-tooltip {
+	position: absolute;
+	z-index: 1000;
+	top: 36px;
+	left: -1px;
+	min-width: 300px;
+	background-color: #fafafa;
+	padding: 16px 16px;
+	border: 1px solid rgba(0, 0, 0, .15);
+	border-radius: 4px;
+	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	/* visibility: hidden; */
+}
+
+.flat-calendar-tooltip::after {
+	content: "";
+	background-color: white;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	left: 12px;
+	top: -4px;
+	border: 1px solid #d5d5d5;
+	border-top-color: white;
+	border-left-color: white;
+	transform: rotate(-135deg);
+}
+
+.flat-calendar-tooltip ul {
+	position: relative;
+	padding-left: 0;
+	margin: 0;
+	list-style: none;
+	text-decoration: none;
+}
+
+.flat-calendar-tooltip ul li {
+	position: relative;
+	padding-left: 16px;
+	margin-bottom: 4px;
+}
+
+.flat-calendar-tooltip ul li:last-child {
+	margin-bottom: 0;
+}
+
+.flat-calendar-tooltip ul li::before {
+	content: '';
+	position: absolute;
+	left: 0;
+	top: 10px;
+	transform: translateY(-50%);
+	width: 6px;
+	height: 6px;
+	background-color: #f9423a;
+	border-radius: 50%;
+}
+
+.flat-calendar-tooltip li a {
+	overflow: hidden;
+	display: -webkit-box;
+	-webkit-line-clamp: 2;
+	-webkit-box-orient: vertical;
+	text-decoration: none;
+	color: #333333;
+}
+
+.flat-calendar-tooltip li a:hover {
+	color: #f9423a;
 }
