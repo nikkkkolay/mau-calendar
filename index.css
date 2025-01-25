@@ -77,6 +77,7 @@ body {
 
 .day.active .flat-calendar-tooltip {
 	display: none;
+	opacity: 0;
 }
 
 .day.active:hover .dayNumber,
@@ -84,6 +85,7 @@ body {
 .day.active.focus .dayNumber,
 .day.active.focus .dayOfWeek {
 	color: #f9423a;
+	transition: all .2s ease;
 }
 
 .day.active.focus::after {
@@ -98,6 +100,7 @@ body {
 	border-top-color: white;
 	border-left-color: white;
 	transform: translateX(-50%) rotate(-135deg);
+	animation: open .8s;
 }
 
 .day.active span {
@@ -170,7 +173,7 @@ body {
 	top: -26px;
 	content: "";
 	display: block;
-	width: 25px;
+	width: 38px;
 	height: 60px;
 	margin-top: 14px;
 	pointer-events: none;
@@ -178,7 +181,7 @@ body {
 }
 
 .control-left span::after {
-	right: -33px;
+	right: -38px;
 	background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -187,7 +190,7 @@ body {
 }
 
 .control-right span::after {
-	left: -33px;
+	left: -38px;
 	background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -213,6 +216,7 @@ body {
 	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: 4px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
+	animation: open .8s;
 }
 
 .flat-calendar-tooltip ul {
@@ -283,4 +287,16 @@ body {
 	transition-duration: 0.3s;
 	transition-property: box-shadow, transform;
 	transition-timing-function: ease;
+}
+
+@keyframes open {
+	from {
+		opacity: 0;
+		display: none;
+	}
+
+	to {
+		opacity: 1;
+		display: block;
+	}
 }

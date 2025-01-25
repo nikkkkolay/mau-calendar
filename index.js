@@ -57,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const activeElement = e.target.closest(".day.active");
         if (activeElement) {
             const tooltip = activeElement.querySelector(".flat-calendar-tooltip");
+
             const tooltipContainer = document.querySelector(".flat-calendar-tooltip-container");
 
             const elementRect = activeElement.getBoundingClientRect();
@@ -64,13 +65,21 @@ document.addEventListener("DOMContentLoaded", () => {
             const positionX = elementRect.left - wrapperRect.left;
 
             tooltipContainer.innerHTML = "";
-            tooltip.style.marginLeft = `${positionX}px`;
             removeFocusClass();
 
             const tooltipCopy = tooltip.cloneNode(true);
             activeElement.classList.add("focus");
-
             tooltipContainer.appendChild(tooltipCopy);
+
+            const visibleTooltip = tooltipContainer.querySelector(".flat-calendar-tooltip");
+            visibleTooltip.style.marginLeft = `${positionX}px`;
+
+            const originalWidth = 360;
+            const tooltipWidth = visibleTooltip.offsetWidth;
+            const offsetTooltip = originalWidth - tooltipWidth;
+            const adjustedMarginLeft = positionX - offsetTooltip < 0 ? 0 : positionX - offsetTooltip;
+
+            visibleTooltip.style.marginLeft = `${adjustedMarginLeft}px`;
         }
     });
 
