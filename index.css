@@ -2,17 +2,22 @@
 	font-family: Arial;
 }
 
+body {
+	padding-top: 300px;
+}
+
 .flat-calendar-root {
-	display: flex;
-	align-items: center;
-	height: fit-content;
 	max-width: 1300px;
 	padding: 0 20px;
+	margin: auto;
+}
+
+.flat-calendar-container {
+	display: flex;
+	align-items: center;
 	user-select: none;
 	-webkit-user-select: none;
 	-ms-user-select: none;
-	height: 500px;
-	margin: auto;
 }
 
 .block::-webkit-scrollbar {
@@ -22,6 +27,7 @@
 .flat-calendar {
 	display: flex;
 	flex-direction: row;
+	align-items: center;
 	width: 100%;
 }
 
@@ -33,12 +39,12 @@
 	z-index: 100;
 }
 
-.month:last-child {
-	padding-right: 0;
+.month:nth-child(2) {
+	padding-right: 15px;
 }
 
 .title {
-	margin: 0px 0px 2px 10px;
+	margin: 0px 0px 10px 10px;
 	font-size: 12px;
 	line-height: 14px;
 	color: rgba(0, 0, 0, 0.3);
@@ -64,29 +70,34 @@
 	text-decoration: none;
 }
 
-.day:hover {
-	color: inherit;
-	text-decoration: none;
-}
-
-.day:hover .flat-calendar-tooltip {
-	visibility: visible;
-}
-
 .day.active {
 	position: relative;
 	cursor: pointer;
 }
 
+.day.active .flat-calendar-tooltip {
+	display: none;
+}
+
 .day.active:hover .dayNumber,
-.day.active:hover .dayOfWeek {
+.day.active:hover .dayOfWeek,
+.day.active.focus .dayNumber,
+.day.active.focus .dayOfWeek {
 	color: #f9423a;
 }
 
-.day.active:focus,
-.day.active:focus .dayOfWeek {
-	color: #f9423a;
-	text-decoration: none;
+.day.active.focus::after {
+	content: "";
+	background-color: white;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	left: 50%;
+	bottom: -4px;
+	border: 1px solid #d5d5d5;
+	border-top-color: white;
+	border-left-color: white;
+	transform: translateX(-50%) rotate(-135deg);
 }
 
 .day.active span {
@@ -126,7 +137,7 @@
 
 .control {
 	position: relative;
-	height: 74px;
+	height: 82px;
 	width: 0;
 	display: flex;
 	align-items: center;
@@ -159,7 +170,7 @@
 	top: -26px;
 	content: "";
 	display: block;
-	width: 40px;
+	width: 25px;
 	height: 60px;
 	margin-top: 14px;
 	pointer-events: none;
@@ -167,7 +178,7 @@
 }
 
 .control-left span::after {
-	right: -50px;
+	right: -33px;
 	background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
 }
 
@@ -176,44 +187,32 @@
 }
 
 .control-right span::after {
-	left: -50px;
+	left: -33px;
 	background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
 }
 
 .flat-calendar-wrapper {
 	position: relative;
 	overflow-x: scroll;
-	overflow-y: visible;
-	z-index: 1;
+	overflow-y: hidden;
 	scrollbar-width: none;
 }
 
+.flat-calendar-tooltip-container {
+	position: relative;
+	width: 100%;
+	height: 0;
+	top: -1px;
+}
+
 .flat-calendar-tooltip {
-	position: absolute;
-	z-index: 1000;
-	top: 36px;
-	left: -1px;
-	min-width: 300px;
+	position: relative;
+	max-width: 360px;
 	background-color: #fafafa;
 	padding: 16px 16px;
 	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: 4px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-	/* visibility: hidden; */
-}
-
-.flat-calendar-tooltip::after {
-	content: "";
-	background-color: white;
-	width: 8px;
-	height: 8px;
-	position: absolute;
-	left: 12px;
-	top: -4px;
-	border: 1px solid #d5d5d5;
-	border-top-color: white;
-	border-left-color: white;
-	transform: rotate(-135deg);
 }
 
 .flat-calendar-tooltip ul {
@@ -257,4 +256,31 @@
 
 .flat-calendar-tooltip li a:hover {
 	color: #f9423a;
+}
+
+.flat-calendar-button {
+	display: block;
+	margin-bottom: 10px;
+	border-radius: 2px;
+	padding: 6px 12px;
+	margin-bottom: 0;
+	font-size: 14px;
+	color: #ffffff;
+	background-color: #008cfa;
+	white-space: nowrap;
+	align-self: end;
+	position: relative;
+	bottom: 9px;
+}
+
+.flat-calendar-button:focus,
+.flat-calendar-button:hover {
+	color: #ffffff;
+	text-decoration: none;
+	background-color: #f9423a;
+	transform: translateY(-4px);
+	box-shadow: rgba(193, 193, 193, 0.7) 0px 5px 12px;
+	transition-duration: 0.3s;
+	transition-property: box-shadow, transform;
+	transition-timing-function: ease;
 }
