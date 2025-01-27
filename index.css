@@ -4,6 +4,7 @@
 
 body {
 	padding-top: 300px;
+	background-color: #eeeeee;
 }
 
 .flat-calendar-root {
@@ -107,8 +108,8 @@ body {
 	position: absolute;
 	top: -0.3rem;
 	right: -0.1rem;
-	width: 1.3rem;
-	height: 1.3rem;
+	width: 14px;
+	height: 14px;
 	font-size: 10px;
 	color: #ffffff;
 	border-radius: 50%;
@@ -182,7 +183,7 @@ body {
 
 .control-left span::after {
 	right: -38px;
-	background: linear-gradient(to right, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+	background: linear-gradient(to right, #eeeeee 0%, #eeeeee 38.67%, rgba(238, 238, 238, 0) 100%);
 }
 
 .control-right {
@@ -191,7 +192,7 @@ body {
 
 .control-right span::after {
 	left: -38px;
-	background: linear-gradient(to left, rgb(255, 255, 255) 0%, rgb(255, 255, 255) 38.67%, rgba(255, 255, 255, 0) 100%);
+	background: linear-gradient(to left, #eeeeee 0%, #eeeeee 38.67%, rgba(238, 238, 238, 0) 100%);
 }
 
 .flat-calendar-wrapper {
@@ -216,7 +217,8 @@ body {
 	border: 1px solid rgba(0, 0, 0, .15);
 	border-radius: 4px;
 	box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
-	animation: open .8s;
+	animation: open .5s;
+	z-index: 10;
 }
 
 .flat-calendar-tooltip ul {
