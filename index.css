@@ -80,10 +80,10 @@ body {
 	opacity: 0;
 }
 
-.day.active:hover .dayNumber,
-.day.active:hover .dayOfWeek,
-.day.active.focus .dayNumber,
-.day.active.focus .dayOfWeek {
+.day.active:hover .day-number,
+.day.active:hover .day-week,
+.day.active.focus .day-number,
+.day.active.focus .day-week {
 	color: #f9423a;
 	transition: all .2s ease;
 }
@@ -121,13 +121,13 @@ body {
 	text-align: center;
 }
 
-.dayNumber {
+.day-number {
 	font-weight: 600;
 	font-size: 24px;
 	line-height: 28px;
 }
 
-.dayOfWeek {
+.day-week {
 	color: rgba(0, 0, 0, 0.5);
 	font-size: 12px;
 	line-height: 14px;
