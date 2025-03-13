@@ -339,11 +339,11 @@ body {
 @keyframes open {
 	from {
 		opacity: 0;
-		display: none;
+		visibility: hidden;
 	}
 
 	to {
 		opacity: 1;
-		display: block;
+		visibility: visible;
 	}
 }
